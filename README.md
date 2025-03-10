@@ -1,4 +1,4 @@
-**CinemaApp**, a web application designed to demonstrate core web development skills and technologies through a cinema ticketing and management system.
+
 
 
 ---
