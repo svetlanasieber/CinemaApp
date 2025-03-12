@@ -1,4 +1,4 @@
-namespace CinemaApp.Data.Models
+﻿namespace CinemaApp.Data.Models
 {
     public class Cinema
     {
