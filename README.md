@@ -1,7 +1,7 @@
 
 ---
 
-## 🛠️ Technologies Used
+
 
 ### Backend
 - **ASP.NET Core**
