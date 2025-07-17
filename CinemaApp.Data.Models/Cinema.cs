@@ -1,19 +1,28 @@
 ﻿namespace CinemaApp.Data.Models
 {
+    using Microsoft.EntityFrameworkCore;
+
+    [Comment("Cinema in the system")]
     public class Cinema
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        [Comment("Cinema identifier")]
+        public Guid Id { get; set; }
 
+        [Comment("Cinema name")]
         public string Name { get; set; } = null!;
 
+        [Comment("Cinema location")]
         public string Location { get; set; } = null!;
 
+        [Comment("Shows if cinema is deleted")]
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<CinemaMovie> CinemaMovies { get; set; } 
-            = new HashSet<CinemaMovie>();
+        [Comment("Cinema's manager")]
+        public Guid? ManagerId { get; set; }
 
-        public virtual ICollection<Ticket> Tickets { get; set; }
-            = new HashSet<Ticket>();
+        public virtual Manager? Manager { get; set; }
+
+        public virtual ICollection<CinemaMovie> CinemaMovies { get; set; }
+            = new HashSet<CinemaMovie>();
     }
 }
