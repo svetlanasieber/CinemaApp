@@ -5,28 +5,29 @@
 
     using Models;
 
-    using static Common.EntityValidationConstants.Manager;
-
     public class ManagerConfiguration : IEntityTypeConfiguration<Manager>
     {
-        public void Configure(EntityTypeBuilder<Manager> builder)
+        public void Configure(EntityTypeBuilder<Manager> entity)
         {
-            builder
+            entity
                 .HasKey(m => m.Id);
 
-            builder
-                .Property(m => m.WorkPhoneNumber)
-                .IsRequired()
-                .HasMaxLength(PhoneNumberMaxLength);
+            entity
+                .Property(m => m.IsDeleted)
+                .HasDefaultValue(false);
 
-            builder
-                .Property(m => m.UserId)
-                .IsRequired();
-
-            builder
+            entity
                 .HasOne(m => m.User)
                 .WithOne()
-                .HasForeignKey<Manager>(m => m.UserId);
+                .HasForeignKey<Manager>(m => m.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity
+                .HasIndex(m => new { m.UserId })
+                .IsUnique();
+
+            entity
+                .HasQueryFilter(m => m.IsDeleted == false);
         }
     }
 }

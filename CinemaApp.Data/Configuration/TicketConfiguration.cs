@@ -4,45 +4,39 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using Models;
+    using static GCommon.ApplicationConstants;
 
     public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
     {
-        public void Configure(EntityTypeBuilder<Ticket> builder)
+        public void Configure(EntityTypeBuilder<Ticket> entity)
         {
-            builder
+            entity
                 .HasKey(t => t.Id);
 
-            builder
+            entity
                 .Property(t => t.Price)
-                .IsRequired()
-                .HasColumnType("decimal(18,2)");
+                .HasColumnType(PriceSqlType);
 
-            builder
-                .Property(t => t.CinemaId)
-                .IsRequired();
-
-            builder
-                .Property(t => t.MovieId)
-                .IsRequired();
-
-            builder
+            entity
                 .Property(t => t.UserId)
-                .IsRequired();
+                .IsRequired(true);
 
-            builder
-                .HasOne(t => t.Cinema)
-                .WithMany(c => c.Tickets)
-                .HasForeignKey(t => t.CinemaId);
+            entity
+                .HasOne(t => t.CinemaMovieProjection)
+                .WithMany(cm => cm.Tickets)
+                .HasForeignKey(t => t.CinemaMovieId);
 
-            builder
-                .HasOne(t => t.Movie)
-                .WithMany(m => m.Tickets)
-                .HasForeignKey(t => t.MovieId);
-
-            builder
+            entity
                 .HasOne(t => t.User)
-                .WithMany(u => u.Tickets)
+                .WithMany()
                 .HasForeignKey(t => t.UserId);
+
+            entity
+                .HasIndex(t => new { t.CinemaMovieId, t.UserId })
+                .IsUnique(true);
+
+            entity
+                .HasQueryFilter(t => t.CinemaMovieProjection.IsDeleted == false);
         }
     }
 }
