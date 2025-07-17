@@ -2,36 +2,30 @@
 {
     using System.Linq.Expressions;
 
-    public interface IRepository<TType, TId>
+    public interface IRepository<TEntity, TKey>
     {
-        TType GetById(TId id);
+        TEntity? GetById(TKey id);
 
-        Task<TType> GetByIdAsync(TId id);
+        TEntity? SingleOrDefault(Func<TEntity, bool> predicate);
 
-        TType FirstOrDefault(Func<TType, bool> predicate);
+        TEntity? FirstOrDefault(Func<TEntity, bool> predicate);
 
-        Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate);
+        IEnumerable<TEntity> GetAll();
 
-        IEnumerable<TType> GetAll();
+        int Count();
 
-        Task<IEnumerable<TType>> GetAllAsync();
+        IQueryable<TEntity> GetAllAttached();
 
-        IQueryable<TType> GetAllAttached();
+        void Add(TEntity item);
 
-        void Add(TType item);
+        void AddRange(IEnumerable<TEntity> items);
 
-        Task AddAsync(TType item);
+        bool Delete(TEntity entity);
 
-        void AddRange(TType[] items);
+        bool HardDelete(TEntity entity);
 
-        Task AddRangeAsync(TType[] items);
+        bool Update(TEntity item);
 
-        bool Delete(TType entity);
-
-        Task<bool> DeleteAsync(TType entity);
-
-        bool Update(TType item);
-
-        Task<bool> UpdateAsync(TType item);
+        void SaveChanges();
     }
 }
