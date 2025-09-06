@@ -2,15 +2,11 @@
 {
     using Microsoft.AspNetCore.Identity;
 
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-        
-            this.Id = Guid.NewGuid();
-        }
+        public virtual Manager? Manager { get; set; }
 
-        public virtual ICollection<ApplicationUserMovie> ApplicationUserMovies { get; set; }
+        public virtual ICollection<ApplicationUserMovie> WatchlistMovies { get; set; }
             = new HashSet<ApplicationUserMovie>();
 
         public virtual ICollection<Ticket> Tickets { get; set; }
