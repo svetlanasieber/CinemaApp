@@ -17,7 +17,6 @@ namespace CinemaApp.WebApi
             string connectionString = builder.Configuration.GetConnectionString("SQLServer")!;
             string? cinemaWebAppOrigin = builder.Configuration.GetValue<string>("Client Origins:CinemaWebApp");
 
-            // Add services to the container.
             builder.Services
                 .AddDbContext<CinemaDbContext>(options =>
                 {
@@ -25,7 +24,6 @@ namespace CinemaApp.WebApi
                 });
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -59,7 +57,7 @@ namespace CinemaApp.WebApi
 
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).Assembly);
 
-            // Configure the HTTP request pipeline.
+       
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
