@@ -19,7 +19,7 @@
 
         public async Task<IEnumerable<WatchlistViewModel>> GetUserWatchlistAsync(string userId)
         {
-            // Due to the use of the built-in IdentityUser, we do not have direct navigation collection from the user side
+           
             IEnumerable<WatchlistViewModel> userWatchlist = await this.watchlistRepository
                 .GetAllAttached()
                 .Include(aum => aum.Movie)
@@ -118,3 +118,4 @@
         }
     }
 }
+
