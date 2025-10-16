@@ -4,7 +4,7 @@
     {
         public static class Movie
         {
-            // Error messages
+           
             public const string TitleRequiredMessage = "Title is required.";
             public const string TitleMinLengthMessage = "Title must be at least 2 characters.";
             public const string TitleMaxLengthMessage = "Title cannot exceed 100 characters.";
@@ -33,3 +33,4 @@
         }
     }
 }
+
