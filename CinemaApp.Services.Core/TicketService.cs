@@ -72,7 +72,7 @@
                     }
                     else
                     {
-                        // TODO: Implement ticket pricing elsewhere
+                    
                         Ticket newTicket = new Ticket()
                         {
                             Quantity = quantity,
@@ -93,3 +93,4 @@
         }
     }
 }
+
