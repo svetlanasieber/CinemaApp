@@ -154,7 +154,7 @@
                 return false;
             }
 
-            // Soft Delete <=> Edit of IsDeleted property
+           
             result = await this.movieRepository.DeleteAsync(movieToDelete);
             
             return result;
@@ -168,14 +168,14 @@
                 return false;
             }
 
-            // TODO: To be investigated when relations to Movie entity are introduced
+           
             await this.movieRepository
                 .HardDeleteAsync(movieToDelete);
 
             return true;
         }
 
-        // TODO: Implement as generic method in BaseService
+     
         private async Task<Movie?> FindMovieByStringId(string? id)
         {
             Movie? movie = null;
@@ -194,3 +194,4 @@
         }
     }
 }
+
