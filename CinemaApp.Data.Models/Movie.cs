@@ -29,7 +29,7 @@
         [Comment("Movie image url from the image store")]
         public string? ImageUrl { get; set; }
 
-        // TODO: Extract the property with Id to BaseDeletableModel
+    
         [Comment("Shows if movie is deleted")]
         public bool IsDeleted { get; set; }
 
@@ -40,3 +40,4 @@
             = new HashSet<CinemaMovie>();
     }
 }
+
